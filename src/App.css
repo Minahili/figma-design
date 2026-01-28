@@ -449,22 +449,22 @@ body {
     text-align: center;
   }
 
-  /* HERO SECTION - Tablet (Brown left top, Image right - overlapping) */
- .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+  /* HERO SECTION - Tablet (Side by side: brown left 65%, image right 35%) */
+  .hero {
+    display: grid;
+    grid-template-columns: 65% 35%;
+    height: auto;
   }
   
   .hero-left {
-    padding: 50px 40px;
+    padding: 50px 30px;
     align-items: flex-start;
-    order: 1;
   }
   
   .hero-left h2 {
     font-size: 50px;
     line-height: 1.05;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     max-width: 100%;
   }
   
@@ -474,16 +474,12 @@ body {
     font-size: 18px;
   }
   
-  .hero-right {
-    order: 2;
-  }
-  
   .hero-right img {
     width: 100%;
-    height: 400px;
+    height: 100%;
+    min-height: 500px;
     object-fit: cover;
   }
-  
   
   /* ABOUT SECTION - Tablet */
   .about {
@@ -528,7 +524,7 @@ body {
   
   /* PRODUCTS SECTION - Tablet (Minimal side padding) */
   .products {
-    padding: 0px 30px;
+    padding: 50px 30px;
   }
   
   .products-grid {
@@ -591,47 +587,87 @@ body {
     display: block;
   }
   
- /* ===== TABLET FOOTER EXACT FIX ===== */
-
-.footer {
-  width: 100%;
-  background: #c79a63;
-  padding: 80px 0 0 0;   /* more top space like screenshot */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-.footer-top {
-  display: none;
-}
-
-/* LOGO — not full width, controlled size */
-.footer-logo {
-  width: 75%;
-  max-width: 800px;
-  height: auto;
-  display: block;
-  margin: 0 auto 20px auto;
-}
-
-/* Copyright text */
-.footer-bottom {
-  font-size: 14px;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-/* Checker strip full width */
-.footer .strip-img {
-  width: 100%;
-  margin: 0;
-  display: block;
-}
-
+  /* FOOTER - Tablet */
+  .footer {
+    padding: 0;
+    background: #c79a63;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+  }
+  
+  /* Show footer links and contact on tablet - CENTERED */
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 50px 30px 30px;
+    width: 100%;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .footer-links a {
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .footer-contact p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* Logo - CENTER and LARGE */
+  .footer-logo {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    padding: 40px 30px 25px;
+    display: block;
+  }
+  
+  /* Copyright IMAGE - CENTER */
+  .footer-copyright {
+    width: auto;
+    max-width: 400px;
+    height: auto;
+    padding: 0 30px 30px;
+    display: block;
+  }
+  
+  /* Copyright TEXT - CENTER */
+  .footer-bottom {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 30px 30px;
+    margin: 0;
+  }
+  
   /* Strip at bottom - full width */
   .footer .strip-img {
     width: 100%;
@@ -685,35 +721,50 @@ body {
     text-align: right;
   }
 
-  /* HERO SECTION - Mobile (Side by side: brown left, image right) */
-/* HERO - Mobile PERFECT */
-.hero {
-  display: grid;
-  grid-template-columns: 60% 40%;
-}
-
-.hero-left {
-  padding: 40px 15px;
-}
-
-.hero-left h2 {
-  font-size: 26px;
-  line-height: 1.05;
-  margin-bottom: 20px;
-}
-
-.hero-left button {
-  width: 105px;
-  height: 42px;
-  font-size: 13px;
-  border-radius: 50px;   /* smoother oval */
-}
-
-.hero-right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  /* HERO SECTION - Mobile (Overlapping: brown left top over image) */
+  .hero {
+    position: relative;
+    display: block;
+    height: 400px;
+  }
+  
+  .hero-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 52%;
+    height: 75%;
+    padding: 30px 15px;
+    z-index: 2;
+  }
+  
+  .hero-left h2 {
+    font-size: 26px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  
+  .hero-left button {
+    width: 105px;
+    height: 42px;
+    font-size: 13px;
+  }
+  
+  .hero-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
   /* ABOUT SECTION - Mobile */
   .about {
     padding: 50px 20px;
@@ -785,90 +836,123 @@ body {
   }
   
   /* FIND SECTION - Mobile */
-
-.find-heading {
-  background: #c89c64;
-  padding: 60px 20px 30px 20px;
-}
-
-.find-heading h2 {
-  font-size: 55px;
-  line-height: 0.9;
-}
-
-.find-bottom {
-  display: flex;
-  flex-direction: column;
-}
-
-.find-text {
-  padding: 50px 20px;
-}
-
-.find-text p {
-  font-size: 20px;
-  line-height: 1.1;
-}
-
-.find-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+  .find-heading {
+    padding: 40px 20px 25px 20px;
+  }
+  
+  .find-heading h2 {
+    font-size: 48px;
+    line-height: 0.88;
+  }
+  
+  .find-bottom {
+    grid-template-columns: 1fr;
+  }
+  
+  .find-text {
+    padding: 40px 20px;
+  }
+  
+  .find-text p {
+    font-size: 22px;
+    line-height: 1.05;
+    max-width: 100%;
+  }
+  
+  .find-image {
+    margin-bottom: 0;
+  }
+  
+  .find-image img {
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    object-fit: cover;
+  }
+  
   /* FOOTER - Mobile */
   .footer {
     padding: 0;
     background: #c79a63;
     margin-top: 0;
-  }
-  
- .footer-top { 
-  display: flex;
-   flex-direction: column; 
-   align-items: center;
-    gap: 40px; 
-    padding: 50px 30px 30px; 
-    width: 100%; }
-  
-
-
-    .footer-links { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-    
-    
-    
-    .footer-links a { font-size: 18px;
-       font-weight: 400;
-        color: #000;
-         text-transform: uppercase; 
-         text-align: center; }
-  .footer-logo {
-    width: 85%;
-    max-width: none;
-    padding: 40px 20px 25px;
-    display: block;
-  }
-  
-  .footer-copyright {
-    width: auto;
-    max-width: 300px;
-    padding: 0 20px 25px;
-  }
-  
-  .footer-bottom {
-    font-size: 11px;
-    padding: 0 20px 25px;
-    letter-spacing: 0.5px;
-  }
-  
-  .footer .strip-img {
-    width: 100%;
-    margin: 0;
-  }
-  
-  .footer-logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  
+  /* Show footer links and contact - CENTERED */
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 50px 20px 40px;
+    width: 100%;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .footer-links a {
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .footer-contact p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* Logo - CENTER and LARGE */
+  .footer-logo {
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+    padding: 0 20px 20px;
+    display: block;
+  }
+  
+  /* Copyright IMAGE */
+  .footer-copyright {
+    width: auto;
+    max-width: 280px;
+    padding: 0 20px 25px;
+    display: block;
+  }
+  
+  /* Copyright TEXT */
+  .footer-bottom {
+    font-size: 11px;
+    padding: 0 20px 25px;
+    letter-spacing: 0.8px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  
+  /* Strip at bottom - full width */
+  .footer .strip-img {
+    width: 100%;
+    margin: 0;
+    display: block;
   }
 }
 
@@ -892,33 +976,19 @@ body {
     font-size: 18px;
   }
 
- .hero {
-  display: grid;
-  grid-template-columns: 60% 40%;
-}
-
-.hero-left {
-  padding: 30px 15px;
-}
-
-.hero-left h2 {
-  font-size: 26px;
-  line-height: 1.05;
-  margin-bottom: 20px;
-}
-
-.hero-left button {
-  width: 105px;
-  height: 42px;
-  font-size: 13px;
-  border-radius: 50px;   /* smoother oval */
-}
-
-.hero-right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .hero-left {
+    padding: 40px 20px;
+  }
+  
+  .hero-left h2 {
+    font-size: 30px;
+  }
+  
+  .hero-left button {
+    width: 120px;
+    height: 48px;
+    font-size: 15px;
+  }
   
   .about {
     padding: 50px 20px;
