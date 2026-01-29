@@ -21,6 +21,7 @@
 
 import Home from "./components/Home";
 import "./app.css";
+import './index.css';
 
 export default function App() {
   return <Home />;
